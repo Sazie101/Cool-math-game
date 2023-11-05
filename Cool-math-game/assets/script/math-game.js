@@ -25,13 +25,13 @@ const scoreDisplay = selectById('score');
 const userAnswer = selectById('userAnswer');
 const question = selectById('question');
 const submit = selectById('submit');
+const timerDisplay = selectById('timer');
 scoreDisplay.innerText = `score: ${points}`;
 const opArr = ['+', '-', '*'];
 
 function generateQuestion() {
-    const numsArr = Array.from({ length: 10 }, (_, index) => index + 1);
-    let randNum1 = Math.floor(Math.random() * numsArr.length);
-    let randNum2 = Math.floor(Math.random() * numsArr.length);
+    let randNum1 = Math.ceil(Math.random()*10);
+    let randNum2 = Math.ceil(Math.random()*10);
     let randOp = Math.floor(Math.random() * opArr.length);
     question.innerText = `${randNum1} ${opArr[randOp]} ${randNum2}`;
     return { randNum1, randNum2, randOp };
@@ -39,8 +39,11 @@ function generateQuestion() {
 
 let { randNum1, randNum2, randOp } = generateQuestion();
 
-onEvent('click', submit, (event) => {
-    event.preventDefault();
+let remainingTime = 5;
+let checkTime;
+
+function checkAnswer() {
+    remainingTime = 5;
     let answer = parseFloat(userAnswer.value);
     let result;
 
@@ -67,6 +70,24 @@ onEvent('click', submit, (event) => {
 
     // Generate a new question after checking the answer
     ({ randNum1, randNum2, randOp } = generateQuestion());
+}
+
+function timerFunction() {
+    remainingTime--;
+    timerDisplay.innerText = `Time: ${remainingTime} sec`;
+
+    if (remainingTime === 0) {
+        clearInterval(checkTime);
+        checkAnswer();
+        checkTime = setInterval(timerFunction, 1000);
+    }
+}
+
+checkTime = setInterval(timerFunction, 1000);
+
+onEvent('click', submit, (event) => {
+    event.preventDefault();
+    clearInterval(checkTime);
+    checkAnswer();
+    checkTime = setInterval(checkAnswer, 5000);
 });
-
-
