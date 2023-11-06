@@ -89,5 +89,5 @@ onEvent('click', submit, (event) => {
     event.preventDefault();
     clearInterval(checkTime);
     checkAnswer();
-    checkTime = setInterval(checkAnswer, 5000);
+    checkTime = setInterval(timerFunction, 1000);
 });
