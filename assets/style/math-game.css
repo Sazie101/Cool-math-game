@@ -12,7 +12,7 @@ body {
   height: 100dvh;
   display: grid;
   place-items: center;
-  background-color: #e2f6fe;
+  background: linear-gradient(to bottom right, #f12128, #0405d6);;
 }
 
 #score {
@@ -21,11 +21,12 @@ body {
 
 h2 {
     text-align: center;
-    margin: 10px
+    margin: 10px;
+    font-size: 40px;
 }
 
 h2, p {
-    color: #63ddd5;
+    color: #000;
 }
 
 form input {
@@ -33,30 +34,57 @@ form input {
     background-color: #2b313d;
     border: none;
     border-radius: 10px;
-    color: #fff;
+    color: #c0c0c0;
     font-size: 18px;
     text-align: center;
+    width: 500px;
+    height: 200px;
 }
 
 form {
     padding: 20px;
     border-radius: 10px;
-    background-color: #3b4454;
+    background-color: #fff;
+    box-shadow: rgba(0 0 0 / 0.3) 8px 10px 10px;
 }
 
 #question {
-    color: #63ddd5;
-    padding: 10px 0;
+    color: #000;
     border-radius: 10px;
     background-color: #2b313d;
     text-align: center;
+    height: 100px;
+    font-size: 30px;
+    line-height: 100px;
+    background: linear-gradient(#f0f0f0, #e0e0e0);
+}
+
+#userAnswer {
+    font-size: 30px;
+    background: linear-gradient(#f0f0f0, #e0e0e0);
+    color: #000;
+    outline: none;
+    border: 1px solid transparent;
+    transition: all 0.1s ease-in-out;
+}
+
+#userAnswer:focus {
+    border: 1px solid #808080;
+    transition: all 0.2s ease-in-out;
 }
 
 #submit {
     margin-top: 15px;
     cursor: pointer;
     width: 100%;
-    padding: 10px 0;
+    padding: 15px 0;
     background-color: #fff;
     border-radius: 10px;
+    font-size: 30px;
+    border: none;
+    box-shadow: rgba(0 0 0 / 0.3) 0 0 10px;
+}
+#submit:hover {
+    transform: scale(1.01);
+    box-shadow: rgba(0 0 0 / 0.4) 0 0 10px;
 }
